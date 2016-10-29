@@ -4,7 +4,6 @@ class Solution(object):
 		dp = []
 		for i in range(target+1):
 			dp.append(0)
-			print i
 			for k in range(len(nums)):
 				if i > nums[k]:
 					dp[i] += dp[i - nums[k]]
