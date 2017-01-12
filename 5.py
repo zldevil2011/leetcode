@@ -1,5 +1,33 @@
 class Solution(object):
 	def longestPalindrome(self, s):
+		if len(s) <= 1:
+			return s
+		max_l = 0
+		res = ""
+		l = len(s)
+		for i in range(l):
+			ll = i
+			rr = i
+			tmp = self.getlr(s, ll, rr)
+			if len(tmp) > max_l:
+				max_l = len(tmp)
+				res = tmp
+			if i != (len(s) - 1):
+				ll = i
+				rr = i + 1
+				tmp = self.getlr(s, ll, rr)
+				if len(tmp) > max_l:
+					max_l = len(tmp)
+					res = tmp
+		return res
+
+	def getlr(self, s, l, r):
+		while l>=0 and r < len(s) and s[l] == s[r]:
+			l -= 1
+			r += 1
+		return s[l+1:r]
+
+	def longestPalindrome1(self, s):
 		"""
 		:type s: str
 		:rtype: str
@@ -25,4 +53,4 @@ class Solution(object):
 
 if __name__ == '__main__':
 	s = Solution()
-	print s.longestPalindrome("abcda")
+	print s.longestPalindrome("babad")
