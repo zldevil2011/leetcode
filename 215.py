@@ -37,11 +37,30 @@ class Solution(object):
 				self.min_heap(1, len(self.nums_t))
 		return self.nums_t[0]
 
+	def findKthLargest1(self, nums, k):
+		L = len(nums)
+		if L == 1:
+			return nums[0]
+		left = []
+		right = []
+		for i in range(1,L):
+			if nums[i] < nums[0]:
+				left.append(nums[i])
+			else:
+				right.append(nums[i])
+		new_L = len(right)
+		if new_L >= k:
+			return self.findKthLargest1(right, k)
+		elif new_L == k - 1:
+			return nums[0]
+		else:
+			return self.findKthLargest1(left, k - new_L - 1)
+
 if __name__ == '__main__':
 	nums = [4,1,3,2,16,9,10,14,8,7]
 	l = 5
 	s = Solution()
-	ans = s.findKthLargest(nums, l)
+	ans = s.findKthLargest1(nums, l)
 	print "ans : ", ans
 	# for i in range(0,l):
 	# 	print s.nums_t[i]
