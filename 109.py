@@ -1,3 +1,7 @@
+"""
+109
+递归的执行，将当前列表中间的位置的数字作为根节点，然后递归的处理左半部分作为左孩子，右半部分作为右孩子
+"""
 class ListNode(object):
 	def __init__(self, x):
 		self.val = x
@@ -53,21 +57,6 @@ class Solution(object):
 			root.right = self.sortedListToBST(right_head)
 			return root
 
-	def get_len(self, head):
-		list_len = 0
-		tmp = head
-		while tmp.next is not None:
-			list_len += 1
-			tmp = tmp.next
-		list_len += 1
-		return list_len
-
-	def print_node_val(self, root):
-		if root is not None:
-			print(root.val)
-			self.print_node_val(root.left)
-			self.print_node_val(root.right)
-
 if __name__ == '__main__':
 	s = Solution()
 	head = ListNode(-10)
@@ -80,4 +69,3 @@ if __name__ == '__main__':
 	node3.next = node4
 	node4.next = node5
 	tree = s.sortedListToBST(head)
-	s.print_node_val(tree)
